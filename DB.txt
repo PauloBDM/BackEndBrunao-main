@@ -1,0 +1,56 @@
+create database OreaSecaDB;
+use OreaSecaDB;
+
+create table tb_login (
+  id_login int primary key auto_increment,
+  ds_usuario varchar(30),
+  ds_senha varchar(30)
+);
+
+
+create table tb_cliente (
+  id_cli int primary key auto_increment,
+  ds_nome varchar(30),
+  ds_num_cli varchar(30),
+  ds_email_cli varchar(30),
+  ds_comentario varchar(30)
+);
+
+
+create table tb_servico (
+  id_servico int primary key auto_increment,
+  fk_id_cli INT,
+  ds_endereco varchar(50),
+  vlr_servico DOUBLE,
+  dt_estimada DATE,
+  ds_servico varchar(250),
+CONSTRAINT fk_id_cli FOREIGN KEY (fk_id_cli) REFERENCES tb_cliente(id_cli) 
+);
+
+insert into tb_login (ds_usuario, ds_senha) values ('admin', 'admin');
+
+insert into tb_cliente (ds_nome, ds_num_cli, ds_email_cli, ds_comentario) 
+values
+('Paulo', '119876321', 'paulo.silva@email.com', 'Cliente fiel');
+
+
+select * from tb_login;
+select * from tb_servico; 
+select * from tb_cliente;
+
+
+drop table tb_servico;
+drop table tb_cliente;
+drop database oreasecadb;
+
+
+// .env
+PORT=3010
+
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PWD=
+MYSQL_DB=OreaSecaDB
+
+
+IP:20.83.237.168
